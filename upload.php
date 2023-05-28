@@ -60,11 +60,12 @@ $imgs=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
             <td>大小 </td>
         </tr>
     <?php
-    foreach($imgs as $img){
+    foreach($imgs as $idx=>$img){
+      
     ?>
         <tr>
             <td><?=$idx+1;?></td>
-            <td><img src="./img/<?=$img['$img'];?>"></td>
+            <td><img src=".\img\<?=$img['img'];?>"></td>
             <td><?=$img['img'];?></td>
             <td>
                 <?php
@@ -84,10 +85,10 @@ $imgs=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                 }
                 ?>
                 </td>
-            <td><?=floor($img['size']/1024);?></td>
+            <td><?=floor($img['size']/1024)."kB";?></td>
             <td>
-            <button onclick="location.href='./update.php?id=<?=$img['id'];?>'">編輯</button>
-            <button onclick="location.href='./api/del_file.php?id=<?=$img['id'];?>'">刪除</button>
+            <button type="button" onclick="location.href='./update.php?id=<?=$img['id'];?>'">編輯</button>
+            <button type="button" onclick="location.href='./api/del_file.php?id=<?=$img['id'];?>'">刪除</button>
         </td>
             
 

@@ -10,12 +10,14 @@ if ($_FILES['img']['error'] == 0) {
     // $tmp=explode('.',$_FILES['img']['name']);
     // $sub=array_pop($tmp);
     $name = $_FILES['img']['name'];
+    
+   
     // move_uploaded_file($_FILES['img']['tmp_name'],"../img/".$_FILES['img']['name']); //以自已的檔名上傳
     // move_uploaded_file($_FILES['img']['tmp_name'],"../img/".$name.$sub);  //md5編碼上傳
     move_uploaded_file($_FILES['img']['tmp_name'], "../img/" . $name);
 
     $sql = "insert into `images`(`img`,`desc`,`type`,`size`) 
-                        values('$name','{$_POST['desc']}','{$_POST['desc']}')";
+                        values('$name','{$_POST['desc']}','{$_FILES['img']['type']}','{$_FILES['img']['size']}')";
     $pdo->exec($sql);
     header("location:../upload.php");
 
